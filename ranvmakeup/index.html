@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio Raissa Navegantes | Extensão de Cílios e Mentoria em Curitiba</title>
+<meta name="description" content="Extensão de cílios com técnicas gringas no Boa Vista, Curitiba, e mentoria para lash designers. Agende pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== PALETA (baseada no site atual dela) ===== */
+:root{
+  --rosa:#ffd2e3;      /* fundo do site original */
+  --rosa-claro:#fff0f6;
+  --petroleo:#264e4c;  /* cor dos botões originais */
+  --noite:#0f2f38;     /* azul do banner */
+  --ouro:#d9b36c;      /* detalhe do banner */
+  --ink:#2b1f24;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Jost',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--rosa-claro);line-height:1.65}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--petroleo);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08}
+h2{font-size:clamp(2rem,4.5vw,3rem);margin-bottom:14px}
+section{padding:88px 0}
+.btn{display:inline-block;background:var(--petroleo);color:#fff;padding:15px 30px;border-radius:999px;text-decoration:none;font-weight:500;transition:transform .2s,background .2s}
+.btn:hover{background:#1a3735;transform:translateY(-2px)}
+.btn.claro{background:#fff;color:var(--petroleo)}
+.btn.ouro{background:var(--ouro);color:#1c1a14}
+
+header{position:fixed;inset:0 0 auto;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px 28px;background:rgba(255,240,246,.93);backdrop-filter:blur(8px)}
+.logo{font-family:var(--serif);font-size:1.45rem;font-weight:600;text-decoration:none}
+nav{display:flex;gap:26px;align-items:center;font-size:.95rem}
+nav a{text-decoration:none}
+nav a:not(.btn):hover{color:var(--petroleo);text-decoration:underline}
+nav .btn{padding:10px 22px;color:#fff}
+
+/* Carrossel */
+.hero{position:relative;height:100svh;min-height:580px;overflow:hidden;color:#fff;padding:0;background:var(--noite)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s;background:center/cover no-repeat}
+.slide.on{opacity:1}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,47,56,.85),rgba(15,47,56,.2) 70%)}
+.hero-text{position:absolute;z-index:2;left:max(24px,calc(50% - 516px));bottom:17%;max-width:580px;padding-right:24px}
+.hero-text h1{font-size:clamp(2.7rem,7.5vw,5rem);margin-bottom:16px}
+.hero-text p{font-size:1.15rem;margin-bottom:28px;max-width:42ch}
+.hero-text .btn+.btn{margin-left:10px}
+.arrow{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:46px;height:46px;border:0;border-radius:50%;background:rgba(255,255,255,.88);color:var(--ink);font-size:1.4rem;cursor:pointer}
+.prev{left:16px}.next{right:16px}
+.dots{position:absolute;z-index:3;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:10px}
+.dots button{width:11px;height:11px;border-radius:50%;border:0;background:rgba(255,255,255,.5);cursor:pointer;transition:width .3s}
+.dots button.on{background:var(--ouro);width:30px;border-radius:6px}
+
+/* Sobre */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.split img{width:100%;height:520px;object-fit:cover;border-radius:6px}
+.selo{display:inline-block;margin-top:18px;padding:10px 20px;border:1.5px solid var(--petroleo);border-radius:999px;color:var(--petroleo);font-weight:500}
+
+/* Galeria */
+.galeria{background:var(--rosa)}
+.strip{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 24px 22px;margin-top:30px}
+.strip img{flex:0 0 min(320px,80vw);height:400px;object-fit:cover;border-radius:6px;scroll-snap-align:center;cursor:zoom-in}
+
+/* Mentoria */
+.mentoria{background:var(--noite);color:#fff}
+.mentoria img{height:auto;aspect-ratio:4/3;object-position:top}
+.mentoria h2{color:var(--ouro)}
+.mentoria p{margin-bottom:14px;max-width:46ch}
+
+/* Ebook e VIP */
+.extras .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:30px}
+.box{background:#fff;border-radius:8px;padding:30px}
+.box h3{font-size:1.9rem;margin-bottom:8px}
+.box p{margin-bottom:20px}
+
+/* Contato */
+.contato{background:var(--petroleo);color:#fff}
+.contato .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.contato ul{list-style:none;padding:0;margin:18px 0 28px}
+.contato li{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.2)}
+.contato iframe{width:100%;height:340px;border:0;border-radius:8px}
+footer{padding:24px;text-align:center;font-size:.9rem;background:#162f2d;color:#cfdcdb}
+.wa{position:fixed;right:20px;bottom:20px;z-index:30;background:#1fa855;color:#fff;padding:14px 22px;border-radius:999px;text-decoration:none;font-weight:500;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+
+/* Lightbox */
+#lb{position:fixed;inset:0;background:rgba(10,20,22,.92);display:none;align-items:center;justify-content:center;z-index:50;cursor:zoom-out}
+#lb.on{display:flex}
+#lb img{max-width:92vw;max-height:90vh;border-radius:6px}
+
+@media(max-width:760px){
+  nav a:not(.btn){display:none}
+  .split,.contato .wrap{grid-template-columns:1fr}
+  .split img{height:360px}
+  .hero-text{bottom:22%}
+  .hero-text .btn+.btn{margin:10px 0 0}
+  section{padding:62px 0}
+}
+@media(prefers-reduced-motion:reduce){.slide{transition:none}html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#inicio">Raissa Navegantes</a>
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#trabalhos">Trabalhos</a>
+    <a href="#mentoria">Mentoria</a>
+    <a href="#contato">Contato</a>
+    <a class="btn" href="https://api.whatsapp.com/send/?phone=5541999109074&text=Quero+agendar+um+hor%C3%A1rio.&type=phone_number&app_absent=0" target="_blank" rel="noopener">Agendar</a>
+  </nav>
+</header>
+
+<section class="hero" id="inicio" aria-label="Destaques">
+  <div class="slide on" style="background-image:url('img/g1.jpg')"></div>
+  <div class="slide" style="background-image:url('img/g3.jpg')"></div>
+  <div class="slide" style="background-image:url('img/g4.jpg')"></div>
+  <div class="slide" style="background-image:url('img/g6.jpg')"></div>
+  <div class="hero-text">
+    <h1>Cílios com técnica e assinatura</h1>
+    <p>Extensão de cílios com técnicas gringas, no Boa Vista, em Curitiba.</p>
+    <a class="btn ouro" href="https://api.whatsapp.com/send/?phone=5541999109074&text=Quero+agendar+um+hor%C3%A1rio.&type=phone_number&app_absent=0" target="_blank" rel="noopener">Agendar um horário</a>
+    <a class="btn claro" href="#trabalhos">Ver trabalhos</a>
+  </div>
+  <button class="arrow prev" aria-label="Foto anterior">‹</button>
+  <button class="arrow next" aria-label="Próxima foto">›</button>
+  <div class="dots"></div>
+</section>
+
+<section id="sobre">
+  <div class="wrap split">
+    <img src="img/g6.jpg" alt="Cílios com acabamento do Studio Raissa Navegantes" loading="lazy">
+    <div>
+      <h2>Bem-vinda ao meu mundo</h2>
+      <p>Sou a Raissa Navegantes, especialista em cílios, técnicas gringas e mentoria beauty. Aqui você agenda seu atendimento e também encontra conteúdo para evoluir na profissão.</p>
+      <span class="selo">4,5 de 5 · 76 avaliações no Google</span>
+    </div>
+  </div>
+</section>
+
+<section class="galeria" id="trabalhos">
+  <div class="wrap">
+    <h2>Trabalhos recentes</h2>
+    <p>Deslize para o lado e toque em uma foto para ampliar.</p>
+  </div>
+  <div class="strip" tabindex="0" aria-label="Galeria de trabalhos">
+    <img src="img/g1.jpg" alt="Extensão de cílios com efeito delineado" loading="lazy">
+    <img src="img/g6.jpg" alt="Cílios com design de asas" loading="lazy">
+    <img src="img/g4.jpg" alt="Cílios marrons volumosos" loading="lazy">
+    <img src="img/g3.jpg" alt="Cílios com volume e curvatura" loading="lazy">
+    <img src="img/g2.jpg" alt="Técnica de isolamento durante o procedimento" loading="lazy">
+    <img src="img/g5.jpg" alt="Cílios com acabamento natural" loading="lazy">
+  </div>
+</section>
+
+<section class="mentoria" id="mentoria">
+  <div class="wrap split">
+    <div>
+      <h2>Mentoria para lash designers</h2>
+      <p>Ajudo lash designers a evoluírem do básico ao avançado com técnica aplicada, visão profissional e direcionamento real, sem complicação e sem promessas vazias.</p>
+      <p>Seja uma lash com essência.</p>
+      <a class="btn ouro" href="https://api.whatsapp.com/send/?phone=5541999109074&text=Quero+ser+mentorada+por+voc%C3%AA.&type=phone_number&app_absent=0" target="_blank" rel="noopener">Quero ser mentorada por você</a>
+    </div>
+    <img src="img/raissa.jpg" alt="Raissa Navegantes, lash designer e mentora" loading="lazy">
+  </div>
+</section>
+
+<section class="extras">
+  <div class="wrap">
+    <h2>Conteúdos e vantagens</h2>
+    <div class="grid">
+      <div class="box">
+        <h3>Ebook: Do Zero ao Destaque</h3>
+        <p>Material para quem quer começar a trabalhar com cílios com mais segurança.</p>
+        <!-- TROCAR pelo link correto do Kiwify -->
+        <a class="btn" href="#LINK-DO-KIWIFY" target="_blank" rel="noopener">Compre já</a>
+      </div>
+      <div class="box">
+        <h3>Grupo VIP</h3>
+        <p>Cupons do studio e avisos de horários direto no seu WhatsApp.</p>
+        <a class="btn" href="https://chat.whatsapp.com/EWF5lglcrBF2CEwUeLuyR9?mode=gi_t" target="_blank" rel="noopener">Entrar no grupo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contato" id="contato">
+  <div class="wrap">
+    <div>
+      <h2>Agende seu horário</h2>
+      <ul>
+        <li>Rua Lodovico Geronazzo, 273, Sala 01<br>Boa Vista, Curitiba - PR, 82560-040</li>
+        <li><a href="https://instagram.com/ranvmakeup" target="_blank" rel="noopener">@ranvmakeup no Instagram</a></li>
+        <li>Horário de atendimento: confirmar com a Raissa</li>
+      </ul>
+      <a class="btn claro" href="https://api.whatsapp.com/send/?phone=5541999109074&text=Quero+agendar+um+hor%C3%A1rio.&type=phone_number&app_absent=0" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+    </div>
+    <iframe title="Mapa do Studio Raissa Navegantes" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      src="https://maps.google.com/maps?q=Rua+Lodovico+Geronazzo+273+Boa+Vista+Curitiba&output=embed"></iframe>
+  </div>
+</section>
+
+<footer>© <span id="ano"></span> Studio Raissa Navegantes · Curitiba, PR</footer>
+<a class="wa" href="https://api.whatsapp.com/send/?phone=5541999109074&text=Quero+agendar+um+hor%C3%A1rio.&type=phone_number&app_absent=0" target="_blank" rel="noopener">WhatsApp</a>
+<div id="lb" role="dialog" aria-label="Foto ampliada"><img alt=""></div>
+
+<script>
+document.getElementById('ano').textContent=new Date().getFullYear();
+const slides=[...document.querySelectorAll('.slide')],box=document.querySelector('.dots');
+let i=0,t;
+slides.forEach((_,n)=>{const b=document.createElement('button');b.setAttribute('aria-label','Foto '+(n+1));b.onclick=()=>go(n);box.appendChild(b)});
+const dots=[...box.children];
+function go(n){i=(n+slides.length)%slides.length;slides.forEach((s,k)=>s.classList.toggle('on',k===i));dots.forEach((d,k)=>d.classList.toggle('on',k===i));clearInterval(t);
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches)t=setInterval(()=>go(i+1),5500)}
+document.querySelector('.prev').onclick=()=>go(i-1);
+document.querySelector('.next').onclick=()=>go(i+1);
+go(0);
+const lb=document.getElementById('lb'),lbi=lb.querySelector('img');
+document.querySelectorAll('.strip img').forEach(im=>im.onclick=()=>{lbi.src=im.src;lbi.alt=im.alt;lb.classList.add('on')});
+lb.onclick=()=>lb.classList.remove('on');
+addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
+</script>
+</body>
+</html>
